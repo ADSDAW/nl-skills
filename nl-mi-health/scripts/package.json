@@ -1,0 +1,17 @@
+{
+  "name": "nl-mi-health",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Standalone Mi Fitness health sync CLI",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "mi_fitness_health.mjs"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}
