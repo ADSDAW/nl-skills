@@ -61,11 +61,11 @@ Common project-level locations are `.claude/skills/<skill-name>/` for Claude Cod
 
 ## Use
 
-After installation, simply ask in natural language. For example:
+After installation, start requests with `/nl-mi-health`. For example:
 
-- “Sync my Mi Fitness data.”
-- “Generate a weekly health report.”
-- “How has my sleep been over the past few months?”
-- “How many steps did I take each day this month?”
+- `/nl-mi-health Sync my Mi Fitness data.`
+- `/nl-mi-health Generate a weekly health report.`
+- `/nl-mi-health How has my sleep been over the past few months?`
+- `/nl-mi-health How many steps did I take each day this month?`
 
 On first use, the Skill checks its runtime requirements and installs its bundled dependencies. If authorization is needed, it opens a visible browser for you to complete the sign-in and security confirmation yourself. Future sync and query requests can then be handled normally.
