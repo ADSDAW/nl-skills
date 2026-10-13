@@ -38,7 +38,7 @@ function usage() {
   return `用法：node mi_fitness_health.mjs <命令> [参数]
 
 命令：
-  login [--state-path PATH] [--email LABEL] [--timeout 秒] [--browser-channel chrome] [--browser-profile PATH]
+  login [--state-path PATH] [--email LABEL] [--timeout 秒] [--browser-channel msedge] [--browser-profile PATH]
   auth-status [--state-path PATH]
   sync [--state-path PATH] [--data-dir PATH] [--country-code CN] [--page-size 20]
   query [--state-path PATH] [--data-dir PATH] [--type TYPE] [--source sport|fitness] [--since 时间] [--until 时间] [--limit 100] [--format table|json|jsonl]
@@ -229,9 +229,9 @@ async function visibleLogin(args) {
     if (args.browser_profile) {
       const profile = resolve(String(args.browser_profile));
       mkdirSync(profile, { recursive: true, mode: 0o700 });
-      context = await chromium.launchPersistentContext(profile, { channel: args.browser_channel || 'chrome', headless: false, locale: 'zh-CN' });
+      context = await chromium.launchPersistentContext(profile, { channel: args.browser_channel || 'msedge', headless: false, locale: 'zh-CN' });
     } else {
-      browser = await chromium.launch({ channel: args.browser_channel || 'chrome', headless: false });
+      browser = await chromium.launch({ channel: args.browser_channel || 'msedge', headless: false });
       context = await browser.newContext({ locale: 'zh-CN' });
     }
     await context.addCookies([{ name: 'deviceId', value: deviceId, domain: '.account.xiaomi.com', path: '/' }]);
@@ -266,7 +266,7 @@ async function visibleLogin(args) {
     throw new MiHealthError('可见浏览器登录超时，未获得 Mi Fitness 授权。');
   } catch (error) {
     if (error instanceof MiHealthError) throw error;
-    throw new MiHealthError(`无法启动或操作可见 Chrome：${error.message}`);
+    throw new MiHealthError(`无法启动或操作可见浏览器：${error.message}`);
   } finally {
     await context?.close().catch(() => {});
     await browser?.close().catch(() => {});
